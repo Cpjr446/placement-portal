@@ -13,7 +13,11 @@ const Login = () => {
         e.preventDefault();
         const res = await login(email, password);
         if (res.success) {
-            navigate('/dashboard');
+            // Role based redirect
+            const role = res.user.role;
+            if (role === 'recruiter') navigate('/recruiter-dashboard');
+            else if (role === 'admin') navigate('/admin-dashboard');
+            else navigate('/dashboard');
         } else {
             setError(res.message);
         }

@@ -25,15 +25,15 @@ export const AuthProvider = ({ children }) => {
             localStorage.setItem('token', res.data.token);
             localStorage.setItem('user', JSON.stringify(res.data.user));
             setUser(res.data.user);
-            return { success: true };
+            return { success: true, user: res.data.user };
         } catch (error) {
             return { success: false, message: error.response?.data?.message || 'Login failed' };
         }
     };
 
-    const register = async (username, email, password) => {
+    const register = async (username, email, password, role) => {
         try {
-            await axios.post('http://localhost:5000/api/auth/register', { username, email, password });
+            await axios.post('http://localhost:5000/api/auth/register', { username, email, password, role });
             return { success: true };
         } catch (error) {
             return { success: false, message: error.response?.data?.message || 'Registration failed' };

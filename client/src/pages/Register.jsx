@@ -6,13 +6,14 @@ const Register = () => {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [role, setRole] = useState('applicant');
     const { register } = useContext(AuthContext);
     const navigate = useNavigate();
     const [error, setError] = useState('');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const res = await register(username, email, password);
+        const res = await register(username, email, password, role);
         if (res.success) {
             navigate('/login');
         } else {
@@ -56,6 +57,33 @@ const Register = () => {
                             required
                         />
                     </div>
+
+                    <div className="input-group">
+                        <label className="label">I am a:</label>
+                        <div className="flex gap-4">
+                            <label className="flex items-center gap-2 cursor-pointer">
+                                <input
+                                    type="radio"
+                                    name="role"
+                                    value="applicant"
+                                    checked={role === 'applicant'}
+                                    onChange={(e) => setRole(e.target.value)}
+                                />
+                                <span>Applicant</span>
+                            </label>
+                            <label className="flex items-center gap-2 cursor-pointer">
+                                <input
+                                    type="radio"
+                                    name="role"
+                                    value="recruiter"
+                                    checked={role === 'recruiter'}
+                                    onChange={(e) => setRole(e.target.value)}
+                                />
+                                <span>Recruiter</span>
+                            </label>
+                        </div>
+                    </div>
+
                     <button type="submit" className="btn btn-primary w-full mb-4">Register</button>
                     <div className="text-center text-sm text-muted">
                         Already have an account? <Link to="/login" className="text-primary hover:underline">Login</Link>

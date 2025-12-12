@@ -23,11 +23,14 @@ const Navbar = () => {
                     <Link to="/" className="text-muted hover:text-white transition-colors">Home</Link>
                     {user ? (
                         <>
-                            <Link to="/dashboard" className="text-muted hover:text-white transition-colors">Dashboard</Link>
+                            {user.role === 'applicant' && <Link to="/dashboard" className="text-muted hover:text-white transition-colors">Job Board</Link>}
+                            {user.role === 'recruiter' && <Link to="/recruiter-dashboard" className="text-muted hover:text-white transition-colors">Recruiter Dashboard</Link>}
+                            {user.role === 'admin' && <Link to="/admin-dashboard" className="text-muted hover:text-white transition-colors">Admin Dashboard</Link>}
+
                             <div className="flex items-center gap-4 ml-4">
-                                <span className="text-sm font-medium text-white flex items-center gap-1">
-                                    <User size={16} /> {user.username}
-                                </span>
+                                <Link to="/profile" className="text-sm font-medium text-white flex items-center gap-1 hover:text-primary transition-colors">
+                                    <User size={16} /> {user.username} ({user.role})
+                                </Link>
                                 <button onClick={handleLogout} className="btn btn-outline py-2 px-3 text-sm">
                                     <LogOut size={14} className="mr-1" /> Logout
                                 </button>
