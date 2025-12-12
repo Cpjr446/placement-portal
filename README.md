@@ -1,6 +1,12 @@
 # Placement Portal
 
-A dynamic job board application built with the MERN stack.
+Placement portal is a dynamic job tracker application which allows recruiters to post jobs, applicants to upload their resume, get feedback and apply to multiple jobs. 
+Portal admin can get the statistics of applicants placed, domains, average and median package.
+
+## Features
+- Applicant Authentication (Login/Register)
+- Job Dashboard
+- Premium UI with Dark Mode
 
 ## Prerequisites
 - Node.js (v18+)
@@ -24,8 +30,3 @@ A dynamic job board application built with the MERN stack.
    npm install
    npm run dev
    ```
-
-## Features
-- Applicant Authentication (Login/Register)
-- Job Dashboard
-- Premium UI with Dark Mode
