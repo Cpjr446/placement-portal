@@ -21,7 +21,7 @@ const jobRoutes = require('./routes/jobs');
 app.use('/api/auth', authRoutes);
 app.use('/api/jobs', jobRoutes);
 app.use('/api/users', require('./routes/users'));
-app.use('/uploads', express.static('uploads'));
+app.use('/api/analysis', require('./routes/analysis'));
 
 app.get('/', (req, res) => {
     res.send('API is running...');

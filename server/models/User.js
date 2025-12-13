@@ -8,7 +8,8 @@ const UserSchema = new mongoose.Schema({
     profile: {
         name: String,
         skills: [String],
-        resumeLink: String
+        resumeData: Buffer,
+        resumeContentType: String
     },
     createdAt: { type: Date, default: Date.now }
 });

@@ -41,7 +41,8 @@ const Profile = () => {
                     'Content-Type': 'multipart/form-data',
                 },
             });
-            setProfile(prev => ({ ...prev, profile: { ...prev.profile, resumeLink: res.data.resumeLink } }));
+            // Update local state to show "success" UI basically
+            setProfile(prev => ({ ...prev, hasResume: true }));
             setMessage('Resume uploaded successfully!');
             setResume(null); // Clear file input
         } catch (error) {
@@ -82,14 +83,14 @@ const Profile = () => {
                     <div className="card">
                         <h3 className="mb-4 text-xl">Resume Management</h3>
 
-                        {profile.profile?.resumeLink ? (
+                        {profile.hasResume ? (
                             <div className="mb-6 p-4 border border-green-500/30 bg-green-500/10 rounded flex items-center justify-between">
                                 <div className="flex items-center gap-3">
                                     <FileText className="text-green-400" />
                                     <span>Current Resume Uploaded</span>
                                 </div>
                                 <a
-                                    href={`http://localhost:5000${profile.profile.resumeLink}`}
+                                    href={`http://localhost:5000/api/users/${user.id}/resume/download`}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="text-sm text-green-400 hover:text-green-300 underline"
